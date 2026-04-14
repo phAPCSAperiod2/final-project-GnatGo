@@ -9,6 +9,15 @@ public class App {
         Card psyduck = new Card("Psyduck", "common");
 
         CardPack pack = new CardPack(15, 3);
+        System.out.println("Adding cards: ");
+        pack.addCard(altaria);
+        pack.addCard(bulbasaur);
+        pack.addCard(mew);
+
+        System.out.println("Opening pack: ");
+        pack.openPack();
+
+
 
     }
 }

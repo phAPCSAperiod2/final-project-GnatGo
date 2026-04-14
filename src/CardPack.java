@@ -3,6 +3,7 @@ public class CardPack {
     private ArrayList<Card> cardList;
     private int cost;
     private int cardAmount;
+    private int totalCards;
 
     public CardPack(int newCost, int newAmount){
         cardList = new ArrayList<>();
@@ -19,11 +20,17 @@ public class CardPack {
     }
 
     public void addCard(Card newCard){
-        cardList.add(newCard);
+        if(totalCards < cardAmount){
+            cardList.add(newCard);
+        }
+
+        else{
+            System.out.println("You can't add anymore cards.");
+        }
     }
 
     public Card[] openPack(){
-        System.out.println("You got: ");
+        System.out.println("Results: ");
         Card[] returnList = new Card[cardAmount];
         for(int i = 0; i < cardList.size(); i++){
             System.out.println("You pulled " + cardList.get(i).getName() + "!");
