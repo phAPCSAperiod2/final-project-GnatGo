@@ -57,12 +57,38 @@ public class Collection {
     }
 
     public void displayCollection(){
-        for (int i = 0; i < category.size(); i++){
-            System.out.print(category.get(i).getName() + " ");
-            if ((i + 1) % 4 == 0){
+        int PAGE_SIZE = 16;
+        int TOTAL_CARDS = category.size();
+        int TOTAL_PAGE = (TOTAL_CARDS + PAGE_SIZE - 1) / PAGE_SIZE;
+        //for each page
+        for (int page = 0; page < TOTAL_PAGE; page++){
+            System.out.println("Page " + (page + 1) + ": ");
+            CardSlot[][] pageGrid = new CardSlot[4][4];
+            //add to grid
+            int index = page * PAGE_SIZE;
+            for (int i = 0; i < 4; i++){
+                for (int j = 0; j < 4; j++){
+                    if (index < TOTAL_CARDS){
+                        pageGrid[i][j] = category.get(index);
+                        index++;
+                    }
+                    else {
+                        pageGrid[i][j] = null;
+                    }
+                }
+            }
+            //print grid
+            for (int i = 0; i < 4; i++){
+                for (int j = 0; j < 4; j++){
+                    if (pageGrid[i][j] != null){
+                        System.out.print(pageGrid[i][j].getName() + "  ");
+                    }
+                    else {
+                        System.out.print("---   ");
+                    }
+                }
                 System.out.println();
             }
-
         }
     }
 }
