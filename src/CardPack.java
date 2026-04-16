@@ -9,6 +9,7 @@ public class CardPack {
         cardList = new ArrayList<>();
         cost = newCost;
         cardAmount = newAmount;
+        totalCards = 0;
     }
 
     public int getCost(){
@@ -22,6 +23,7 @@ public class CardPack {
     public void addCard(Card newCard){
         if(totalCards < cardAmount){
             cardList.add(newCard);
+            totalCards++;
         }
 
         else{
