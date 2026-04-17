@@ -1,17 +1,14 @@
 public class CardSlot {
-    private String name;
+    private Card card;
     private int amount;
-    private int tier;
-    private final int MAX_TIER = 3;
 
-    public CardSlot(String newName, int newAmount){
-        name = newName;
+    public CardSlot(Card newCard, int newAmount){
+        card = newCard;
         amount = newAmount;
-        tier = 1;
     }
 
-    public String getName(){
-        return name;
+    public Card getCard(){
+        return card;
     }
 
     public int getAmount(){
@@ -24,18 +21,5 @@ public class CardSlot {
 
     public void subtractAmount(int subtract){
         amount -= subtract;
-    }
-
-    public boolean checkMaxTier(){
-        if (tier < MAX_TIER){
-            return true;
-        }
-        return false;
-    }
-
-    public void upgradeCard(){
-        if (tier < MAX_TIER){
-            tier ++;
-        }
     }
 }

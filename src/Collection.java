@@ -1,4 +1,10 @@
+import java.awt.GridLayout;
+import java.net.URL;
 import java.util.ArrayList;
+
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 public class Collection {
     private ArrayList<CardSlot> category;
@@ -7,9 +13,9 @@ public class Collection {
         category = new ArrayList<>();
     }
 
-    public boolean checkCard (Card card){
+    public boolean checkCard (Card checkCard){
         for (int i = 0; i < category.size(); i++){
-            if (category.get(i).getName().equals(card.getName())){
+            if (category.get(i).getCard().getName().equals(checkCard.getName())){
                 return true;
             }
         }
@@ -20,75 +26,39 @@ public class Collection {
         for (Card card : cardList){
             if (checkCard(card)){
                 for (int i = 0; i < category.size(); i++){
-                    if (card.getName().equals(category.get(i).getName())){
+                    if (card.getName().equals(category.get(i).getCard().getName())){
                         category.get(i).addAmount(1);
                         break;
                     }
                 }
             }
             else {
-                CardSlot newCard = new CardSlot(card.getName(), 1);
+                CardSlot newCard = new CardSlot(card, 1);
                 category.add(newCard);
             }
         }
     }
 
-    public void upgrade (String card){
-        boolean found = false;
-        for (int i = 0; i < category.size(); i++){
-            if (card.equals(category.get(i).getName())){
-                if (!category.get(i).checkMaxTier()){
-                    System.out.println("Your card is already upgraded to the max.");
-                    found = true;
-                    break;
-                }
-                else {
-                    System.out.println("You upgraded your card!");
-                    category.get(i).subtractAmount(5);
-                    category.get(i).upgradeCard();
-                    found = true;
-                    break;
-                }
-            }
-        }
-        if (!found){
-            System.out.println("This card isn't in your collection.");
-        }
-    }
+    public void displayCollectionImage(){
+        JFrame frame = new JFrame("Collection");
+        frame.setSize(800, 800);
+        //method that sets jframe into 4 by 4 grid
+        frame.setLayout(new GridLayout(4, 4));
 
-    public void displayCollection(){
-        int PAGE_SIZE = 16;
-        int TOTAL_CARDS = category.size();
-        int TOTAL_PAGE = (TOTAL_CARDS + PAGE_SIZE - 1) / PAGE_SIZE;
-        //for each page
-        for (int page = 0; page < TOTAL_PAGE; page++){
-            System.out.println("Page " + (page + 1) + ": ");
-            CardSlot[][] pageGrid = new CardSlot[4][4];
-            //add to grid
-            int index = page * PAGE_SIZE;
-            for (int i = 0; i < 4; i++){
-                for (int j = 0; j < 4; j++){
-                    if (index < TOTAL_CARDS){
-                        pageGrid[i][j] = category.get(index);
-                        index++;
-                    }
-                    else {
-                        pageGrid[i][j] = null;
-                    }
-                }
+        for (int i = 0; i < category.size() && i < 16; i++){
+            try {
+                String url = category.get(i).getCard().getImage();
+
+                ImageIcon icon = new ImageIcon(new URL(url));
+                JLabel label = new JLabel(icon);
+
+                frame.add(label);
             }
-            //print grid
-            for (int i = 0; i < 4; i++){
-                for (int j = 0; j < 4; j++){
-                    if (pageGrid[i][j] != null){
-                        System.out.print(pageGrid[i][j].getName() + "  ");
-                    }
-                    else {
-                        System.out.print("---   ");
-                    }
-                }
-                System.out.println();
+            catch (Exception e){
+                frame.add(new JLabel("Error"));
             }
         }
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
     }
 }
