@@ -1,6 +1,7 @@
 public class App {
     public static void main(String[] args) throws Exception {
 <<<<<<< HEAD
+<<<<<<< HEAD
         //set up file and scanner stuff------------------------
         File file = new File("src/Data/PokemonList.csv");
         Scanner scanner = new Scanner(file);
@@ -21,6 +22,8 @@ public class App {
         }
         scanner.close();
 =======
+=======
+>>>>>>> parent of 86d02d6 (Can generate random cards with csv file)
         //initial cards-----------------------------------
         Card mew = new Card("Mew", "super rare");
         Card bulbasaur = new Card("Bulbasaur", "rare");
@@ -30,6 +33,7 @@ public class App {
         Card psyduck = new Card("Psyduck", "common");
 
         CardPack pack = new CardPack(15, 3);
+<<<<<<< HEAD
 >>>>>>> parent of 86d02d6 (Can generate random cards with csv file)
 
         Collection collection = new Collection();
@@ -43,6 +47,10 @@ public class App {
         collection.addCards(openCards);
         collection.displayCollectionImage();
 =======
+=======
+
+        Collection collection = new Collection();
+>>>>>>> parent of 86d02d6 (Can generate random cards with csv file)
 
         System.out.println("Adding cards: ");
         pack.addCard(altaria);
@@ -54,8 +62,6 @@ public class App {
         collection.addCards(opened);
         collection.displayCollection();
 >>>>>>> parent of 86d02d6 (Can generate random cards with csv file)
-
-
 
     }
 }
