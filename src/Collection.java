@@ -17,6 +17,14 @@ public class Collection {
         category = new ArrayList<>();
     }
 
+    public int getSize(){
+        return category.size();
+    }
+
+    public CardSlot getSlot(int x){
+        return category.get(x);
+    }
+
     public boolean checkCard (Card checkCard){
         for (int i = 0; i < category.size(); i++){
             if (category.get(i).getCard().getName().equals(checkCard.getName())){
@@ -72,11 +80,10 @@ public class Collection {
                 //.pack() scales frame to fit window size
                 frame.pack();
                 frame.setVisible(true);
-
-
-
             }
             catch (Exception e){
+                System.out.println("Failed to load image at: " + category.get(i).getCard().getImage());
+                System.out.println("Error: " + e.getMessage());
                 frame.add(new JLabel("Error"));
             }
         }

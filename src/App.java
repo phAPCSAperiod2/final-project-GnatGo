@@ -34,5 +34,7 @@ public class App {
         collection.addCards(openedCards);
         collection.displayCollectionImage();
 
+        System.out.println("First card URL: " + pokemonCardArray[0].getImage());
+        System.out.println("Total cards in collection: " + collection.getSize());
     }
 }
