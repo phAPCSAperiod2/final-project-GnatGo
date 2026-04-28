@@ -1,8 +1,14 @@
+import java.awt.Dimension;
 import java.io.File;
 import java.util.Scanner;
+
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 public class App {
     public static void main(String[] args) throws Exception {
-        //set up file and scanner stuff------------------------
+        //set up file and scanner stuff-----------------------------------------------------------
         File file = new File("src/Data/PokemonList.csv");
         Scanner scanner = new Scanner(file);
         Card[] pokemonCardArray = new Card[60];
@@ -22,19 +28,42 @@ public class App {
         }
         scanner.close();
 
+        //set up java swing-----------------------------------------------------------------------------
         CardPack cardpack = new CardPack(15, 10);
         Collection collection = new Collection();
 
-        for (int j = 0; j < 10; j++) {
-            int rand = (int)(Math.random() * 60);
-            cardpack.addCard(pokemonCardArray[rand]);
-        }
+        JFrame menu = new JFrame("Main Menu");
+        menu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        menu.setSize(800, 1200);
 
-        Card[] openedCards = cardpack.openPack();
-        collection.addCards(openedCards);
-        collection.displayCollectionImage();
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
-        System.out.println("First card URL: " + pokemonCardArray[0].getImage());
-        System.out.println("Total cards in collection: " + collection.getSize());
+        JButton collectionButton = new JButton("Collection");
+        collectionButton.setPreferredSize(new Dimension(100, 30));
+        JButton openPack = new JButton("Rip Pack");
+        openPack.setPreferredSize(new Dimension(100, 30));
+
+        panel.add(openPack);
+        panel.add(collectionButton);
+
+        menu.add(panel);
+        menu.setVisible(true);
+
+        openPack.addActionListener(e -> {
+            for (int j = 0; j < 10; j++) {
+                int rand = (int)(Math.random() * 60);
+                cardpack.addCard(pokemonCardArray[rand]);
+            }
+
+            Card[] openedCards = cardpack.openPack();
+            collection.addCards(openedCards);
+        });
+
+
+        collectionButton.addActionListener(e -> {
+            collection.displayCollectionImage();
+            System.out.println("Total cards in collection: " + collection.getSize());
+        });
     }
 }
