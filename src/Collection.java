@@ -1,11 +1,7 @@
-import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.Image;
-import java.awt.image.BufferedImage;
-import java.net.URL;
 import java.util.ArrayList;
 
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -59,27 +55,17 @@ public class Collection {
 
         for (int i = 0; i < category.size() && i < 16; i++){
             try {
-                URL url = new URL(category.get(i).getCard().getImage());
-                BufferedImage originalImage = ImageIO.read(url);
+                String fileName = category.get(i).getCard().getImage() + ".png";
+                String path = "src/Data/" + fileName;
+                ImageIcon image = new ImageIcon(path);
 
                 //scale image
-                int newWidth = 200;
-                int newHeight = 300;
-                //SCALE_SMOOTH prioritizes making the image look smooth
-                Image scaledImage = originalImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
-
-                //convert back to bufferedimage to be displayed
-                BufferedImage originalScaled = new BufferedImage(newWidth, newHeight, BufferedImage.TYPE_INT_RGB);
-                Graphics2D g2d = originalScaled.createGraphics();
-                g2d.drawImage(scaledImage, 0, 0, null);
-                g2d.dispose();
+                Image scaledImage = image.getImage().getScaledInstance(200, 300, Image.SCALE_SMOOTH);
+                image = new ImageIcon(scaledImage);
 
                 //display-----------------------
-                frame.add(new JLabel(new ImageIcon(originalScaled)));
-                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                //.pack() scales frame to fit window size
-                frame.pack();
-                frame.setVisible(true);
+                frame.add(new JLabel(image));
+
             }
             catch (Exception e){
                 System.out.println("Failed to load image at: " + category.get(i).getCard().getImage());
