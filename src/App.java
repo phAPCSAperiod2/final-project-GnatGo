@@ -1,11 +1,8 @@
-import java.awt.Dimension;
 import java.io.File;
 import java.util.Scanner;
 
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 public class App {
     public static void main(String[] args) throws Exception {
         //set up file and scanner stuff-----------------------------------------------------------
@@ -36,18 +33,15 @@ public class App {
         menu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         menu.setSize(800, 1200);
 
-        JPanel panel = new JPanel();
-        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        menu.setLayout(null);
 
         JButton collectionButton = new JButton("Collection");
-        collectionButton.setPreferredSize(new Dimension(100, 30));
+        collectionButton.setBounds(300, 200, 100, 50);
         JButton openPack = new JButton("Rip Pack");
-        openPack.setPreferredSize(new Dimension(100, 30));
+        openPack.setBounds(300, 500, 100, 50);
 
-        panel.add(openPack);
-        panel.add(collectionButton);
-
-        menu.add(panel);
+        menu.add(openPack);
+        menu.add(collectionButton);
         menu.setVisible(true);
 
         openPack.addActionListener(e -> {
