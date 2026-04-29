@@ -52,6 +52,7 @@ public class Collection {
     }
 
     public void displayCollectionImage(){
+        //set up JFrame and resize
         JFrame frame = new JFrame("Collection: Page " + pageNumber + 1);
         frame.setSize(800, 1200);
 
@@ -74,11 +75,8 @@ public class Collection {
 
                 //display-----------------------
                 frame.add(new JLabel(image));
-
             }
             catch (Exception e){
-                System.out.println("Failed to load image at: " + category.get(i).getCard().getImage());
-                System.out.println("Error: " + e.getMessage());
                 frame.add(new JLabel("Error"));
             }
         }
@@ -88,12 +86,14 @@ public class Collection {
             public void keyPressed(KeyEvent e){
                 int maxPage = category.size() - 1 / 16;
 
+                //right arrow key
                 if(e.getKeyCode() == KeyEvent.VK_RIGHT && pageNumber < maxPage){
                     pageNumber++;
                     frame.dispose();
                     displayCollectionImage();
                 }
 
+                //left arrow key
                 else if(e.getKeyCode() == KeyEvent.VK_LEFT && pageNumber > 0){
                     pageNumber--;
                     frame.dispose();

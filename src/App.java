@@ -56,7 +56,6 @@ public class App {
 
 
         collectionButton.addActionListener(e -> {
-            menu.dispose();
             collection.displayCollectionImage();
             System.out.println("Total cards in collection: " + collection.getSize());
         });
