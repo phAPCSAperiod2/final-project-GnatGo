@@ -1,5 +1,7 @@
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -8,9 +10,11 @@ import javax.swing.JLabel;
 
 public class Collection {
     private ArrayList<CardSlot> category;
+    private int pageNumber;
 
     public Collection(){
         category = new ArrayList<>();
+        pageNumber = 0;
     }
 
     public int getSize(){
@@ -48,12 +52,17 @@ public class Collection {
     }
 
     public void displayCollectionImage(){
-        JFrame frame = new JFrame("Collection");
+        JFrame frame = new JFrame("Collection: Page " + pageNumber + 1);
         frame.setSize(800, 1200);
+
         //method that sets jframe into 4 by 4 grid
         frame.setLayout(new GridLayout(4, 4));
 
-        for (int i = 0; i < category.size() && i < 16; i++){
+        //starting and ending indexes for the loop to display cards
+        int startIndex = pageNumber * 16; //restarts at every 16 pages
+        int endIndex = Math.min(startIndex + 16, category.size()); //either starting index + 16, or till the end of category
+
+        for (int i = startIndex; i < endIndex; i++){
             try {
                 String fileName = category.get(i).getCard().getImage() + ".png";
                 String path = "src/Data/" + fileName;
@@ -73,7 +82,28 @@ public class Collection {
                 frame.add(new JLabel("Error"));
             }
         }
+
+        //move pages with arrow keys
+        frame.addKeyListener(new KeyAdapter(){
+            public void keyPressed(KeyEvent e){
+                int maxPage = category.size() - 1 / 16;
+
+                if(e.getKeyCode() == KeyEvent.VK_RIGHT && pageNumber < maxPage){
+                    pageNumber++;
+                    frame.dispose();
+                    displayCollectionImage();
+                }
+
+                else if(e.getKeyCode() == KeyEvent.VK_LEFT && pageNumber > 0){
+                    pageNumber--;
+                    frame.dispose();
+                    displayCollectionImage();
+                }
+            }
+        });
+
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
         frame.setVisible(true);
     }
 }

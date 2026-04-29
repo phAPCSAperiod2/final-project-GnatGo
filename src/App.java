@@ -26,7 +26,6 @@ public class App {
         scanner.close();
 
         //set up java swing-----------------------------------------------------------------------------
-        CardPack cardpack = new CardPack(15, 10);
         Collection collection = new Collection();
 
         JFrame menu = new JFrame("Main Menu");
@@ -45,6 +44,7 @@ public class App {
         menu.setVisible(true);
 
         openPack.addActionListener(e -> {
+            CardPack cardpack = new CardPack(15, 10);
             for (int j = 0; j < 10; j++) {
                 int rand = (int)(Math.random() * 60);
                 cardpack.addCard(pokemonCardArray[rand]);
@@ -56,6 +56,7 @@ public class App {
 
 
         collectionButton.addActionListener(e -> {
+            menu.dispose();
             collection.displayCollectionImage();
             System.out.println("Total cards in collection: " + collection.getSize());
         });
