@@ -10,6 +10,31 @@ public class Favorite {
         favoritesList = new Card[4][4];
     }
 
+    public boolean checkEmpty(){
+        for (int i = 0; i < favoritesList.length; i++){
+            for (int j = 0; j < favoritesList[0].length; j++){
+                if (favoritesList[i][j] == null){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public boolean removeCard(String card){
+        for (int i = 0; i < favoritesList.length; i++){
+            for (int j = 0; j < favoritesList[0].length; j++){
+                if (favoritesList[i][j] != null){
+                    if (favoritesList[i][j].getName().equalsIgnoreCase(card)){
+                        favoritesList[i][j] = null;
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
     public boolean addCard(Card card){
         for (int i = 0; i < favoritesList.length; i++){
             for (int j = 0; j < favoritesList[0].length; j++){
@@ -43,8 +68,6 @@ public class Favorite {
         for (int i = 0; i < favoritesList.length; i++){
             for (int j = 0; j < favoritesList[0].length; j++){
                 try {
-
-
                     String fileName = favoritesList[i][j].getImage() + ".png";
                     String path = "src/Data/" + fileName;
                     ImageIcon image = new ImageIcon(path);

@@ -52,7 +52,7 @@ public class Collection {
 
     public void displayCollectionImage(){
         //set up JFrame and resize
-        JFrame frame = new JFrame("Collection: Page " + pageNumber + 1);
+        JFrame frame = new JFrame("Collection: Page " + (pageNumber + 1));
         frame.setSize(800, 1200);
 
         //method that sets jframe into 4 by 4 grid
