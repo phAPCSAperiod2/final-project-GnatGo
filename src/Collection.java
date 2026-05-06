@@ -7,23 +7,46 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+/**
+ * Manages the user's card collection and displays it as pages of card images.
+ */
 public class Collection {
     private ArrayList<CardSlot> category;
     private int pageNumber;
 
+    /**
+     * Creates a new empty collection.
+     */
     public Collection(){
         category = new ArrayList<>();
         pageNumber = 0;
     }
 
+    /**
+     * Returns the number of unique card slots in the collection.
+     *
+     * @return the number of card slots
+     */
     public int getSize(){
         return category.size();
     }
 
+    /**
+     * Returns the card slot at the specified index.
+     *
+     * @param x the index of the card slot
+     * @return the card slot at the index
+     */
     public CardSlot getSlot(int x){
         return category.get(x);
     }
 
+    /**
+     * Checks whether a card with the same name is already in the collection.
+     *
+     * @param checkCard the card to look for
+     * @return {@code true} if the card exists in the collection, otherwise {@code false}
+     */
     public boolean checkCard (Card checkCard){
         for (int i = 0; i < category.size(); i++){
             if (category.get(i).getCard().getName().equals(checkCard.getName())){
@@ -33,6 +56,11 @@ public class Collection {
         return false;
     }
 
+    /**
+     * Adds an array of cards to the collection, incrementing quantity for duplicates.
+     *
+     * @param cardList the cards to add
+     */
     public void addCards (Card[] cardList){
         for (Card card : cardList){
             if (checkCard(card)){
@@ -50,6 +78,9 @@ public class Collection {
         }
     }
 
+    /**
+     * Displays the current page of the collection as card images in a GUI window.
+     */
     public void displayCollectionImage(){
         //set up JFrame and resize
         JFrame frame = new JFrame("Collection: Page " + (pageNumber + 1));
@@ -72,7 +103,7 @@ public class Collection {
                 Image scaledImage = image.getImage().getScaledInstance(200, 300, Image.SCALE_SMOOTH);
                 image = new ImageIcon(scaledImage);
 
-                //display-----------------------
+                //display
                 frame.add(new JLabel(image));
             }
             catch (Exception e){
@@ -88,7 +119,7 @@ public class Collection {
                 //right arrow key
                 if(e.getKeyCode() == KeyEvent.VK_RIGHT && pageNumber < maxPage){
                     pageNumber++;
-                    frame.dispose();
+                    frame.dispose(); //gets rid of frame
                     displayCollectionImage();
                 }
 

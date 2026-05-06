@@ -5,7 +5,20 @@ import java.util.Scanner;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+/**
+ * Main application class for the Pokémon card pack opening simulator.
+ *
+ * <p>The {@code App} class loads card data from the CSV file, creates the main
+ * menu GUI, and connects the pack opening, collection display, and favorites
+ * management features.</p>
+ */
 public class App {
+    /**
+     * Entry point for the application.
+     *
+     * @param args command line arguments (not used)
+     * @throws Exception if the card data file cannot be read
+     */
     public static void main(String[] args) throws Exception {
         //set up file and scanner stuff-----------------------------------------------------------
         Scanner input = new Scanner(System.in);
