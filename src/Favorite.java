@@ -1,4 +1,5 @@
 import java.awt.Image;
+
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -80,7 +81,7 @@ public class Favorite {
                     favorites.add(label);
                 }
                 catch (Exception e){
-                    JLabel label = new JLabel("Error");
+                    JLabel label = new JLabel("Empty");
                     label.setBounds(x, y, 200, 300);
                     favorites.add(label);
                 }
@@ -88,6 +89,7 @@ public class Favorite {
 
                 x += 200;
             }
+            x = 0;
             y += 300;
 
         }

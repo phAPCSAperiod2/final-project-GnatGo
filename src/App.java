@@ -1,8 +1,10 @@
+import java.awt.Font;
 import java.io.File;
 import java.util.Scanner;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 public class App {
     public static void main(String[] args) throws Exception {
         //set up file and scanner stuff-----------------------------------------------------------
@@ -36,6 +38,10 @@ public class App {
 
         menu.setLayout(null);
 
+        JLabel title = new JLabel("Card Pack Opening Simulator");
+        title.setBounds(80, 50, 800, 100);
+        title.setFont(new Font("Arial", Font.PLAIN, 50));
+
         JButton collectionButton = new JButton("Collection");
         collectionButton.setBounds(300, 200, 100, 50);
         JButton openPack = new JButton("Rip Pack");
@@ -43,6 +49,7 @@ public class App {
         JButton chaseCard = new JButton("Chase Cards");
         chaseCard.setBounds(300, 800, 100, 50);
 
+        menu.add(title);
         menu.add(openPack);
         menu.add(collectionButton);
         menu.add(chaseCard);
@@ -66,9 +73,10 @@ public class App {
         });
 
         chaseCard.addActionListener(e -> {
-            System.out.print("1)View Chase Cards \n2)Add Chase Card\nRemove Chase Card\n ");
+            System.out.print("1)View Chase Cards \n2)Add Chase Card\n3)Remove Chase Card\n");
             System.out.print("Choose an action [enter number]: ");
             int userInput = input.nextInt();
+            input.nextLine();
             if (userInput == 1){
                 favorites.displayFavorite();
             }

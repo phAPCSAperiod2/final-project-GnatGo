@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+
 public class CardPack {
     private ArrayList<Card> cardList;
     private int cost;
