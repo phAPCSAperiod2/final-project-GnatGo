@@ -40,6 +40,7 @@ A Java GUI program that simulates opening Pokémon card packs, tracking a collec
 - The collection groups duplicate cards by name and counts how many of each card were pulled.
 
 ## Notes
+- This program was developed with the help of Github Copilot AI
 - The GUI windows are built with `JFrame` and show card images using `ImageIcon`.
 - Favorite card selection currently uses console input for add/replace/remove actions.
 - Card images are loaded dynamically from `src/Data` using the image name stored in each card.

@@ -1,11 +1,11 @@
 import java.awt.Font;
 import java.io.File;
 import java.util.Scanner;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 /**
+ * This code was developed with the help of Github Copilot AI
  * Main application class for the Pokémon card pack opening simulator.
  *
  * <p>The {@code App} class loads card data from the CSV file, creates the main
