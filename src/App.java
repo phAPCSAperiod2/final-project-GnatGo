@@ -70,7 +70,7 @@ public class App {
 
         openPack.addActionListener(e -> {
             CardPack cardpack = new CardPack(15, 10);
-            for (int j = 0; j < 10; j++) {
+            for (int j = 0; j < 6; j++) {
                 int rand = (int)(Math.random() * 60);
                 cardpack.addCard(pokemonCardArray[rand]);
             }
